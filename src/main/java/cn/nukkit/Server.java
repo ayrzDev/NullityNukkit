@@ -329,7 +329,7 @@ public class Server {
         this.baseLang = new BaseLang(chooseLanguage);
         this.baseLangCode = mapInternalLang(chooseLanguage);
         this.settings = ConfigManager.create(ServerSettings.class, it -> {
-            log.info("Loading {}...", TextFormat.GREEN + "pnx.yml" + TextFormat.RESET);
+            log.info("Loading {}...", TextFormat.GREEN + "Nullity.yml" + TextFormat.RESET);
             it.withConfigurer(new YamlSnakeYamlConfigurer());
             it.withBindFile(config);
             it.withRemoveOrphans(true);
@@ -1997,7 +1997,7 @@ public class Server {
      * @return 服务器名称<br>The name of server
      */
     public String getName() {
-        return "PowerNukkitX";
+        return "Nullity";
     }
 
     public String getNukkitVersion() {

@@ -132,7 +132,7 @@ public class JavaPluginLoader implements PluginLoader {
     public void disablePlugin(Plugin plugin) {
         if (plugin instanceof PluginBase && plugin.isEnabled()) {
             if (plugin == InternalPlugin.INSTANCE) {
-                throw new UnsupportedOperationException("The PowerNukkitX Internal Plugin cannot be disabled");
+                throw new UnsupportedOperationException("The Nullity Internal Plugin cannot be disabled");
             }
 
             log.info(this.server.getLanguage().tr("nukkit.plugin.disable", plugin.getDescription().getFullName()));

@@ -22,10 +22,10 @@ public class BaseSettings extends OkaeriConfig {
     @Comment("pnx.settings.base.allowlist")
     boolean allowList = false;
     @Comment("pnx.settings.base.motd")
-    String motd = "PowerNukkitX Server";
+    String motd = "Nullity Server";
     @CustomKey("sub-motd")
     @Comment("pnx.settings.base.submotd")
-    String subMotd = "powernukkitx.org";
+    String subMotd = "nullity.org";
     @Comment("pnx.settings.base.language")
     String language = "eng";
     @Comment("pnx.settings.base.forcetranslate")

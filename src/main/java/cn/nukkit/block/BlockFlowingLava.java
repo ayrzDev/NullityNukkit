@@ -170,12 +170,17 @@ public class BlockFlowingLava extends BlockLiquid {
         Block down = this.getSide(BlockFace.DOWN);
         for (int side = 1; side < 6; ++side) { //don't check downwards side
             Block blockSide = this.getSide(BlockFace.fromIndex(side));
-            if (blockSide instanceof BlockFlowingWater || blockSide.getLevelBlockAtLayer(1) instanceof BlockFlowingWater) {
+            Block layer1 = blockSide.getLevelBlockAtLayer(1);
+            // Prefer the actual water layer if present (waterlogged blocks)
+            if (blockSide instanceof BlockFlowingWater) {
                 colliding = blockSide;
+                break;
+            } else if (layer1 instanceof BlockFlowingWater) {
+                colliding = layer1;
                 break;
             }
             if (down instanceof BlockSoulSoil) {
-                if (blockSide instanceof BlockBlueIce) {
+                if (blockSide instanceof BlockBlueIce || layer1 instanceof BlockBlueIce) {
                     liquidCollide(this, Block.get(BlockID.BASALT));
                     return;
                 }
@@ -192,8 +197,9 @@ public class BlockFlowingLava extends BlockLiquid {
 
     @Override
     protected void flowIntoBlock(Block block, int newFlowDecay) {
-        if (block instanceof BlockFlowingWater) {
-            ((BlockLiquid) block).liquidCollide(this, Block.get(BlockID.STONE));
+        if (block instanceof BlockFlowingWater || block.getLevelBlockAtLayer(1) instanceof BlockFlowingWater) {
+            Block layer = block instanceof BlockFlowingWater ? block : block.getLevelBlockAtLayer(1);
+            ((BlockLiquid) layer).liquidCollide(this, Block.get(BlockID.STONE));
         } else {
             super.flowIntoBlock(block, newFlowDecay);
         }
